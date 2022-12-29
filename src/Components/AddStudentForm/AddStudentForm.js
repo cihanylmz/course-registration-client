@@ -8,7 +8,7 @@ const AddStudentForm = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    await axios.post('http://localhost:8000/students', { name });
+    await axios.post('https://course-registration-api.onrender.com/students', { name });
     setName('');
   };
 

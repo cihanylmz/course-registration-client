@@ -8,7 +8,7 @@ const AddCourseForm = () => {
   
     const handleSubmit = async e => {
       e.preventDefault();
-      await axios.post('http://localhost:8000/courses', { name });
+      await axios.post('https://course-registration-api.onrender.com/courses', { name });
       setName('');
     };
     return (

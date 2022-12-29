@@ -22,7 +22,7 @@ const AddStudentToCourseForm = () => {
       e.preventDefault();
       try {
         console.log(courseId + ' + ' + studentId);
-        await axios.put(`http://localhost:8000/courses/${courseId}/students/${studentId}`);
+        await axios.put(`https://course-registration-api.onrender.com/courses/${courseId}/students/${studentId}`);
         setStudentId('');
         setCourseId('');
       } catch (error) {
