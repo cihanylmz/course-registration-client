@@ -2,23 +2,21 @@ import React from 'react';
 import usePermission from "./usePermission";
 
 
-
-// This component is meant to be used everywhere a restriction based on user permission is needed
+//Kullanımı engellenen bir component olduğunda bunu kullanırız.
 const Restricted = ({to, fallback,loadingComponent, children}) => {
 
-    // We "connect" to the provider thanks to the PermissionContext
     const [loading, allowed] = usePermission(to);
 
     if(loading){
         return <>{loadingComponent}</>;
     }
 
-    // If the user has that permission, render the children
+    //Kullanıcı izne sahipse görüntülemeye izin verir
     if(allowed){
         return <>{children}</>;
     }
 
-    // Otherwise, render the fallback
+    //İzne sahip değilse izin vermez ve istediğimiz text'i gösterir.
     return <>{fallback}</>;
 };
 

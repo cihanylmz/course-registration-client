@@ -8,6 +8,9 @@ const AddStudentToCourseForm = () => {
     const [courseId, setCourseId] = useState('');
     const [courses, setCourses] = useState([]);
     const [students, setStudents] = useState([]);
+
+    //Sayfada her değişiklik olduğunda courses ve students variablelarını
+    //back-end'den çekerek günceller.
     useEffect(() => {
       const fetchData = async () => {
         const courseResult = await axios.get('https://course-registration-api.onrender.com/courseAPI/courses');
@@ -17,11 +20,10 @@ const AddStudentToCourseForm = () => {
       };
       fetchData();
     });
-    
+    //Submit edildiğinde PUT request ile veri tabanını günceller.
     const handleSubmit = async e => {
       e.preventDefault();
       try {
-        console.log(courseId + ' + ' + studentId);
         await axios.put(`https://course-registration-api.onrender.com/courseAPI/courses/${courseId}/students/${studentId}`);
         setStudentId('');
         setCourseId('');
@@ -29,7 +31,7 @@ const AddStudentToCourseForm = () => {
         console.error(error);
       }
     };
-  
+    
     return (
       <form className='form-inline' onSubmit={handleSubmit}>
         <label>

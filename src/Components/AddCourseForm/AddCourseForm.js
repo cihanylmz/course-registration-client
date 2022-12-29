@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
-import { useEffect } from 'react';
 import axios from 'axios';
-import Restricted from "../../PermissionProvider/Restricted";
 
+//Yeni bir kurs eklemek için kullanılır.
 const AddCourseForm = () => {
     const [name, setName] = useState('');
-  
+
     const handleSubmit = async e => {
       e.preventDefault();
       await axios.post('https://course-registration-api.onrender.com/courseAPI/courses', { name });
+      //Submit edildikten sonra input alanını sıfırlar
       setName('');
     };
     return (

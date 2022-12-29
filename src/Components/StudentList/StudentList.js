@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import { useEffect } from 'react';
 import axios from 'axios';
-import Restricted from "../../PermissionProvider/Restricted";
 const StudentList = ({ student }) => {
   const [students, setStudents] = useState([]);
 
@@ -17,7 +16,9 @@ const StudentList = ({ student }) => {
   const [selectedStudent, setSelectedStudent] = useState(null);
   const [courses, setCourses] = useState([]);
 
+  //Show courses butonuna tıklandığında çalışarak kursların gösterilmesini sağlar.
   const handleShowCoursesClick = async student => {
+    //Seçtiğimiz öğrenciyi ayarlar.
     setSelectedStudent(student);
     setCoursesModalOpen(true);
     try {
@@ -29,6 +30,8 @@ const StudentList = ({ student }) => {
     }
   };
 
+  //Kursları görüntülemeyi kapatmamızı sağlar.
+  //Değerleri sıfırlar
   const handleCloseCoursesModal = () => {
     setCoursesModalOpen(false);
     setSelectedStudent(null);

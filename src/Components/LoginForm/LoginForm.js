@@ -2,22 +2,10 @@
 
 
 
-const noRights = {
+const student = {
     firstName: 'No Rights',
     lastName: 'User',
     permissions: [],
-}
-
-const viewer = {
-    firstName: 'Viewer',
-    lastName: 'User',
-    permissions: ['list.elements'],
-}
-
-const contributor = {
-    firstName: 'Contributor',
-    lastName: 'User',
-    permissions: ['list.elements', 'add.element'],
 }
 
 const administrator = {
@@ -36,7 +24,7 @@ const LoginForm = ({onLogin}) => (
                 <div className="card-body">
                     You can only enroll in courses
                     <button type="button" className="btn btn-lg btn-block btn-primary"
-                            onClick={() => onLogin(noRights)}>
+                            onClick={() => onLogin(student)}>
                         Login as Student
                     </button>
                 </div>

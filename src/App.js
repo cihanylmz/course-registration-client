@@ -2,10 +2,8 @@
 import './App.css';
 import React from 'react';
 import "bootstrap/dist/css/bootstrap.min.css"
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useState } from 'react';
 
-import { BrowserRouter, Routes, Route } from "react-router-dom"
 import LoginForm from "./Components/LoginForm";
 import CourseList from './Components/CourseList';
 import StudentList from './Components/StudentList';
@@ -14,12 +12,11 @@ import AddStudentForm from './Components/AddStudentForm';
 import AddStudentToCourseForm from './Components/AddStudentToCourseForm';
 import PermissionProvider from "./PermissionProvider/PermissionProvider";
 import Restricted from "./PermissionProvider/Restricted";
-import { Row } from 'react-bootstrap';
 
 function fetchPermission(user) {
   return async function(permission) {
-    // Simulate a delay from a request
     await new Promise(resolve => setTimeout(resolve, 100));
+    //Kullanıcının giriş yaptığı izinlerini alır
     return user.permissions.includes(permission);
   }
 }
@@ -27,11 +24,10 @@ function fetchPermission(user) {
 function App() {
   let [currentUser, setCurrentUser] = useState();
   if (!currentUser) {
+    //Login formundan giriş yapıldığında mevcut kullanıcıyı set eder.
     return <LoginForm onLogin={setCurrentUser}/>;
   }
-  const logout = () => {
-    setCurrentUser(undefined);
-  }
+  //Yetki olmayan kısımlarda gösterilecek mesaj ayarlanır.
   const notAllowed = (<div className="container">
         <div className="row">
             <div className="col">
@@ -49,6 +45,7 @@ function App() {
           <div className='col-6'>
           <h2>Courses</h2>
           <CourseList />
+          {/*Sadece belirli yetkiye sahip kullanıcıların girmesini sağlar. */}
           <Restricted to="add.element" fallback={notAllowed}>
             <AddCourseForm />
           </Restricted>
