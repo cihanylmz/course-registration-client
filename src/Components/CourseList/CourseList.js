@@ -8,7 +8,7 @@ const CourseList = () => {
   
     useEffect(() => {
       const fetchData = async () => {
-        const result = await axios.get('https://course-registration-api.onrender.com/courses');
+        const result = await axios.get('https://course-registration-api.onrender.com/courseAPI/courses');
         setCourses(result.data);
       };
       fetchData();
