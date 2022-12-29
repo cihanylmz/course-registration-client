@@ -10,9 +10,9 @@ const AddStudentToCourseForm = () => {
     const [students, setStudents] = useState([]);
     useEffect(() => {
       const fetchData = async () => {
-        const courseResult = await axios.get('http://localhost:8000/courses');
+        const courseResult = await axios.get('https://course-registration-api.onrender.com/courseAPI/courses');
         setCourses(courseResult.data);
-        const studentResult = await axios.get('http://localhost:8000/students');
+        const studentResult = await axios.get('https://course-registration-api.onrender.com/studentAPI/students');
         setStudents(studentResult.data);
       };
       fetchData();
@@ -22,7 +22,7 @@ const AddStudentToCourseForm = () => {
       e.preventDefault();
       try {
         console.log(courseId + ' + ' + studentId);
-        await axios.put(`https://course-registration-api.onrender.com/courseAPI/courses/${courseId}/studentAPI/students/${studentId}`);
+        await axios.put(`https://course-registration-api.onrender.com/courseAPI/courses/${courseId}/students/${studentId}`);
         setStudentId('');
         setCourseId('');
       } catch (error) {
